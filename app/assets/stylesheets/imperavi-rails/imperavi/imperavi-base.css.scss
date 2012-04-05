@@ -5,12 +5,17 @@
   padding: 0;
   background-color: #fff;
 
+  div, p, ul, ol, table, dl, pre, 
+  h1, h2, h3, h4, h5,
   blockquote {
-    margin: 10px;
+  	background-color: #fff;
+  	border: 1px solid #ebebeb;
+  	padding: 10px;
+  	margin: 10px;	
+  }
+
+  blockquote {
     margin-left: 3em;
-    background-color: #fff;
-    border: 1px solid #ebebeb;
-    padding: 10px;  
     line-height: 1.5em; 
     font-style: italic;
     color: #777;  
@@ -18,18 +23,12 @@
 
   div {
     line-height: 1.5em;
-    background-color: #fff;
     border: 1px solid #ebebeb;
-    padding: 10px;  
-    margin: 10px;
   }
 
   p {
-    margin: 10px;
     line-height: 1.5em;
-    background-color: #fff;
     border: 1px solid #ebebeb;
-    padding: 10px;
     overflow: hidden;
 
     .img_left {
@@ -44,11 +43,8 @@
   }
 
   ul, ol {
-    background-color: #fff;
     border: 1px solid #ebebeb;
-    padding: 10px;
     line-height: 1.5em;
-    margin: 10px;
     padding-left: 2em;  
   }
 
@@ -60,20 +56,15 @@
   }
 
   dl { 
-    background-color: #fff;
     border: 1px solid #ebebeb;
-    padding: 10px;  
-    margin: 10px; 
 
     dt { font-weight: bold; }
     dd { margin-left: 1.5em;}
   }
 
   table {
-    background-color: #fff;
     border-collapse: collapse;
     font-size: 1em; 
-    margin: 10px;
 
     td {
       border: 1px solid #ddd;
@@ -137,10 +128,7 @@
 
   h1, h2, h3, h4, h5 {
     font-weight: normal;
-    background-color: #fff;
     border: 1px solid #ebebeb;
-    padding: 10px;
-    margin: 10px;
   }
 
   h1 { font-size: 30px; }
