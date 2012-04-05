@@ -781,8 +781,6 @@ var $table, $table_tr, $table_td, $tbody, $thead, $current_tr, $current_td;
 	   		}
 			else this.$box.prepend(this.$toolbar);			
 			
-			console.log(this.$box);
-			
 			$.each(RTOOLBAR, function(key,s)
 			{
 
@@ -1190,7 +1188,7 @@ var $table, $table_tr, $table_td, $tbody, $thead, $current_tr, $current_td;
         showTable: function()
         {       
             redactorActive = this;
-            this.modalInit(RLANG.table, this.opts.path + 'plugins/table.html', 360, 200);
+            this.modalInit(RLANG.table, this.opts.paths.dialogs.table, 360, 200);
         },
         insertTable: function()
         {           
@@ -1344,7 +1342,7 @@ var $table, $table_tr, $table_td, $tbody, $thead, $current_tr, $current_td;
                 
                 $('#redactor_file').dragupload(
                 { 
-                	url: this.opts.fileUpload + params, 
+                	url: this.opts.paths.files.upload + params, 
                 	success: function(data)
 	                {
 		                this.fileUploadCallback(data);
@@ -1352,7 +1350,7 @@ var $table, $table_tr, $table_td, $tbody, $thead, $current_tr, $current_td;
                 	}.bind2(this)
                 });
                 
-                this.uploadInit('redactor_file', { auto: true, url: this.opts.fileUpload + params, success: function(data) {
+                this.uploadInit('redactor_file', { auto: true, url: this.opts.paths.files.upload + params, success: function(data) {
                     
                     this.fileUploadCallback(data);
                     
@@ -1363,7 +1361,7 @@ var $table, $table_tr, $table_td, $tbody, $thead, $current_tr, $current_td;
             
         
             redactorActive = this;
-			this.modalInit(RLANG.file, this.opts.path + 'plugins/file.html?r', 500, 380, handler);
+			this.modalInit(RLANG.file, this.opts.paths.dialogs.file, 500, 380, handler);
 		},	
 		fileUploadCallback: function(data)
 		{
@@ -1398,7 +1396,7 @@ var $table, $table_tr, $table_td, $tbody, $thead, $current_tr, $current_td;
 			}.bind2(this);
 			
 			redactorActive = this;
-			this.modalInit(RLANG.file, this.opts.path + 'plugins/file_edit.html', 400, 200, handler);
+			this.modalInit(RLANG.file, this.opts.paths.dialogs.fileEdit, 400, 200, handler);
 		},
 		fileDelete: function(el, file_id)
 		{
@@ -1428,7 +1426,7 @@ var $table, $table_tr, $table_td, $tbody, $thead, $current_tr, $current_td;
 			}.bind2(this); 
 
 			redactorActive = this;      
-            this.modalInit(RLANG.image, this.opts.path + 'plugins/image_edit.html', 380, 290, handler);
+            this.modalInit(RLANG.image, this.opts.paths.dialogs.imageEdit, 380, 290, handler);
         },
         imageSave: function(el)
         {
@@ -1455,9 +1453,9 @@ var $table, $table_tr, $table_td, $tbody, $thead, $current_tr, $current_td;
             var handler = function()
             {
             
-            	if (this.opts.imageGetJson !== false)
+            	if (this.opts.paths.images.list !== false)
             	{
-					$.getJSON(this.opts.imageGetJson, function(data) {
+					$.getJSON(this.opts.paths.images.list, function(data) {
 						  $.each(data, function(key, val)
 						  {
 						  		var img = $('<img src="' + val.thumb + '" rel="' + val.image + '">');
@@ -1480,7 +1478,7 @@ var $table, $table_tr, $table_td, $tbody, $thead, $current_tr, $current_td;
                 
                 $('#redactor_file').dragupload(
                 { 
-                	url: this.opts.imageUpload + params, 
+                	url: this.opts.paths.images.upload + params, 
                 	success: function(data)
 	                {
 		                this.imageUploadCallback(data);
@@ -1488,7 +1486,7 @@ var $table, $table_tr, $table_td, $tbody, $thead, $current_tr, $current_td;
                 	}.bind2(this)
                 });
                 
-                this.uploadInit('redactor_file', { auto: true, url: this.opts.imageUpload + params, success: function(data) {
+                this.uploadInit('redactor_file', { auto: true, url: this.opts.paths.images.upload + params, success: function(data) {
                     
                     this.imageUploadCallback(data);
                     
@@ -1501,7 +1499,7 @@ var $table, $table_tr, $table_td, $tbody, $thead, $current_tr, $current_td;
             
         
             redactorActive = this;
-            this.modalInit(RLANG.image, this.opts.path + 'plugins/image.html', 570, 410, handler);
+            this.modalInit(RLANG.image, this.opts.paths.dialogs.image, 570, 410, handler);
             
         },
         imageSetThumb: function(data)
@@ -1593,7 +1591,7 @@ var $table, $table_tr, $table_td, $tbody, $thead, $current_tr, $current_td;
 						
 			}.bind2(this);
 
-			this.modalInit(RLANG.link, this.opts.path + 'plugins/link.html', 400, 260, handler);
+			this.modalInit(RLANG.link, this.opts.paths.dialogs.link, 400, 260, handler);
 	
 		},	
 		insertLink: function()
@@ -1647,7 +1645,7 @@ var $table, $table_tr, $table_td, $tbody, $thead, $current_tr, $current_td;
             }
 		
 			redactorActive = this;
-			this.modalInit(RLANG.video, this.opts.path + 'plugins/video.html', 600, 360, function()
+			this.modalInit(RLANG.video, this.opts.paths.dialogs.video, 600, 360, function()
 			{
 				$('#redactor_insert_video_area').focus();			
 			});

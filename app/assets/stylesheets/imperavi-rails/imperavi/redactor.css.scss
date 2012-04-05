@@ -64,6 +64,7 @@ body .redactor_box_fullscreen .redactor_resizer {
 	font-size: 0;
 	background: asset-url("imperavi-rails/imperavi/bg_toolbar.png", image) repeat-x bottom #f4f4f4;
 	overflow: hidden;	
+	width: 100%;
 	border-bottom: 1px solid #cecccc;
 }
 .redactor_toolbar li {
@@ -218,13 +219,9 @@ body .redactor_toolbar li a.redactor_btn_normalscreen span		 { background-positi
 	width: 100%;
 	height: 100%;
 	z-index: 50000;
-	
-
-	
 	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
 	filter:alpha(opacity=70);
 	opacity: 0.70;
-	
 	background-color: #000 !important;
 }
 #redactor_modal_overlay[id] { position: fixed; }
@@ -237,13 +234,11 @@ body .redactor_toolbar li a.redactor_btn_normalscreen span		 { background-positi
 	
 	box-shadow: 0px 5px 20px #111;
 	-webkit-box-shadow: 0 5px 20px #111; 
-  	-moz-box-shadow: 0 5px 20px #111;	
-  	
-  	-webkit-border-radius: 8px;
-  	-moz-border-radius: 8px;
-  	border-radius: 8px;  	  	
-  		
-  	z-index: 50001;	
+  -moz-box-shadow: 0 5px 20px #111;	
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;  	  	
+	z-index: 50001;	
 	font-family: "Trebuchet MS", "Helvetica Neue", "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;   	
 	color: #000;
 }
@@ -269,6 +264,7 @@ body .redactor_toolbar li a.redactor_btn_normalscreen span		 { background-positi
 }
 .redactor_ruler {
 	margin-bottom: 10px;
+	max-width: none;
 }
 .redactor_ruler td {
 	font-size: 12px !important;
