@@ -27,8 +27,8 @@ var $table, $table_tr, $table_td, $tbody, $thead, $current_tr, $current_td;
 	// Options and variables	
 	function Construct(el, options) 
 	{
-		this.opts = $.extend({	
-			lang: 'ru', // ru, en, fr, ua, pt_br, pl, lt
+		var defaultOptions = {	
+			lang: 'en', // ru, en, fr, ua, pt_br, pl, lt
 			air: false,
 			toolbar: 'main', // false, main, mini, air
 			path: '',
@@ -55,7 +55,7 @@ var $table, $table_tr, $table_td, $tbody, $thead, $current_tr, $current_td;
 			fileUploadFunction: false, // callback function
 						
 			
-			css: 'blank.css',	
+			css: '/assets/imperavi-rails/imperavi/wym.css',	
 			
 			visual: true,
 			fullscreen: false,
@@ -69,8 +69,51 @@ var $table, $table_tr, $table_td, $tbody, $thead, $current_tr, $current_td;
 				'#a5a5a5', '#262626', '#494429', '#17365d', '#366092', '#953734', '#76923c', '#5f497a', '#92cddc', '#e36c09', '#c09100',
 				'#7f7f7f', '#0c0c0c', '#1d1b10', '#0f243e', '#244061', '#632423', '#4f6128', '#3f3151', '#31859b', '#974806', '#7f6000')
 			
-		}, options);
-		
+		};
+		var defaultPaths = {
+    			// Paths to various handlers
+    			paths : {
+    				// Editor css
+    				stylesheets : ['/assets/imperavi-rails/imperavi/wym.css'],
+
+    				// Toolbar
+    				toolbar : '/imperavi/toolbar/'+defaultOptions.toolbar+'.js',
+
+    				// Interface translations
+    				language : '/imperavi/language/'+defaultOptions.lang+'.js',
+
+    				// Typograf
+    				typograf : '/imperavi/typograf',
+
+    				// Dialogs
+    				// TODO Add dialogs sizes
+    				dialogs : {
+    			      file      : '/imperavi/file?r',
+    				    fileEdit  : '/imperavi/file_edit',
+    				    image     : '/imperavi/image?r',
+    				    imageEdit : '/imperavi/image_edit',
+    				    link      : '/imperavi/link',
+    				    table     : '/imperavi/table',
+    				    video     : '/imperavi/video'
+    				},
+
+    				// Images
+    				images : {
+    					upload   : '/imperavi/images',
+    					download : '/imperavi/images/777',
+    					list     : '/imperavi/images.json'
+    				},
+
+    				// Files
+    				files : {
+    					upload   : '/imperavi/files',
+    					download : '/imperavi/files/777', // /tests/file_download.php?file=
+    					remove   : '/imperavi/files/777'  // /tests/file_delete.php?delete=
+    				}
+    			}
+    		};
+		$.extend(defaultOptions, defaultPaths);
+		this.opts = $.extend(defaultOptions,options);
 		this.$el = $(el);
 	};
 
@@ -135,13 +178,12 @@ var $table, $table_tr, $table_td, $tbody, $thead, $current_tr, $current_td;
 			// get path to langs, plugins and toolbars
 			$('script').each(function(i,s) 
 			{ 
-				if (s.src) 
+				if (s.src && false) 
 				{
 					if (s.src.match(/\/redactor\.min\.js.*$/)) this.opts.path = s.src.replace(/redactor\.min\.js(\?.*)?$/, ''); 
 					else if (s.src.match(/\/redactor\.js.*$/)) this.opts.path = s.src.replace(/redactor\.js(\?.*)?$/, ''); 
 				}
 			}.bind2(this));
-			
 			
 			// get dimensions
 			this.height = this.$el.css('height');
@@ -162,11 +204,11 @@ var $table, $table_tr, $table_td, $tbody, $thead, $current_tr, $current_td;
 			// load files	
 			var files = [];
 			
-			files.push(this.opts.path + 'langs/' + this.opts.lang + '.js');
+			files.push(this.opts.paths.language);
 
 			if (this.opts.toolbar !== false) 
 			{
-				files.push(this.opts.path + 'toolbars/' + this.opts.toolbar + '.js');
+				files.push(this.opts.paths.toolbar);
 			}
 
 			files.push(function() { this.start(); }.bind2(this));						
@@ -459,8 +501,8 @@ var $table, $table_tr, $table_td, $tbody, $thead, $current_tr, $current_td;
 		},
 		setDoc: function(html)
 		{		
-	    	var frameHtml = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\n';
-			frameHtml += '<html><head><link media="all" type="text/css" href="' + this.opts.path + 'css/' + this.opts.css + '" rel="stylesheet"></head>';
+    	var frameHtml = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\n';
+			frameHtml += '<html><head><link media="all" type="text/css" href="' + this.opts.css + '" rel="stylesheet"></head>';
 			frameHtml += '<body>';
 			frameHtml += html;
 			frameHtml += '</body></html>';
@@ -732,13 +774,15 @@ var $table, $table_tr, $table_td, $tbody, $thead, $current_tr, $current_td;
 		
 			this.$toolbar = $('<ul>').addClass('redactor_toolbar');
 			
-	   		if (this.opts.air)
+	    if (this.opts.air)
 	   		{
 	   			$(this.air).append(this.$toolbar);
 	   			this.$box.prepend(this.air);
 	   		}
 			else this.$box.prepend(this.$toolbar);			
-									
+			
+			console.log(this.$box);
+			
 			$.each(RTOOLBAR, function(key,s)
 			{
 

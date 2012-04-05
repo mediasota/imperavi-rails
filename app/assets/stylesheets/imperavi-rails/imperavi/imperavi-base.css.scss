@@ -1,10 +1,12 @@
-@mixin imperavi-base {
-  font-family: "Trebuchet MS", Verdana, Arial, Tahoma, sans-serif;      
+@mixin imperavi-base{
+  font-family: "PT Sans", "Trebuchet MS", Verdana, Arial, Tahoma, sans-serif;      
   font-size: 90%;
   margin: 0;
   padding: 0;
   background-color: #fff;
-
+  overflow-x: hidden;
+	background-color: #f8f8f8;
+  
   div, p, ul, ol, table, dl, pre, 
   h1, h2, h3, h4, h5,
   blockquote {
@@ -31,6 +33,12 @@
     border: 1px solid #ebebeb;
     overflow: hidden;
 
+    ul, ol {
+      margin: 0;
+    	padding: 0;
+    	border: none;
+    }
+    
     .img_left {
       float: left;
       margin: 0 10px 0 0;
@@ -42,10 +50,15 @@
     }
   }
 
+  div,  p,  ul,  ol,  table,  dl,  blockquote,
+  pre,  iframe,   object,  hr {
+  	margin-bottom: 15px;	
+  	line-height: 1.5em;		
+  }
+  
   ul, ol {
-    border: 1px solid #ebebeb;
     line-height: 1.5em;
-    padding-left: 2em;  
+    padding-left: 2em !important;
   }
 
   ul li ul, ol li ol, ul li ol, ol li ul {
@@ -91,7 +104,14 @@
     background: #f5f5f5;
     overflow: auto;
   }
-
+  
+  hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+  }
+  
   iframe, object {
     margin: 10px;
   }
@@ -101,7 +121,7 @@
     height: 200px;
     background: asset-url("imperavi-rails/video_box.png", images) center no-repeat #000 !important; 
     margin: 10px;
-
+    margin-bottom: 1.5em;	
     object, embed, iframe {
       display: none;
     }
@@ -127,12 +147,13 @@
   .redactor_file_ico_zip    { background: asset-url("imperavi-rails/imperavi/fileicons/zip.png", images) no-repeat; }
 
   h1, h2, h3, h4, h5 {
-    font-weight: normal;
-    border: 1px solid #ebebeb;
+    font-weight: bold;
+    margin-bottom: 10px;
   }
 
-  h1 { font-size: 30px; }
-  h2 { font-size: 24px; }
-  h3 { font-size: 18px; }
-  h4 { font-size: 12px; font-weight: bold; }
+  h1 { font-size: 36px; }
+  h2 { font-size: 30px; }
+  h3 { font-size: 24px; }
+  h4 { font-size: 18px; }
+  h5 { font-size: 1em;  }
 }
