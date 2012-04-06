@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module ImperaviRails
   module ImperaviHelper
     include ActionView::Helpers::AssetTagHelper

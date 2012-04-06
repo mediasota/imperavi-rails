@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 ImperaviRails::Engine.routes.draw do
   get '/file'             => 'imperavi#file',       :as => :file
   get '/file_edit'        => 'imperavi#file_edit',  :as => :file_edit

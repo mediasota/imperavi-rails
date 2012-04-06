@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Image < ActiveRecord::Base
   ALLOWED_MIME_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']
   ALLOWED_EXTENSIONS = [:jpeg, :jpg, :png, :JPEG, :JPG, :PNG]

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module ImperaviRails
   module Generators
     class InstallGenerator < Rails::Generators::Base

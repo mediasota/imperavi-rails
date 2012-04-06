@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ImagesController < ApplicationController
   respond_to :html, :json
 
